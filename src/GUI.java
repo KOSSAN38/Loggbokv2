@@ -1,17 +1,20 @@
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GUI {
+public class GUI implements ActionListener{
 
     private JTextField author;
     private JPanel panel;
-    private JFrame window;
-    private JTextArea textArea;
+    JFrame window;
+    JTextArea textArea;
     private JScrollPane scrollPane;
     private JMenuBar menuBar;
     private JMenu menuFile;
-    private JMenuItem menuItem, iNew, iOpen, iSave;
+    private JMenuItem iNew, iOpen, iSave;
+
+    MVC file = new MVC(this);
 
     public static void main(String[] args) {
         new GUI();
@@ -53,9 +56,13 @@ public class GUI {
     public void createFileMenu() {
 
         this.iNew = new JMenuItem("New");
+        iNew.addActionListener(this);
+        iNew.setActionCommand("New");
         this.menuFile.add(iNew);
 
         this.iOpen = new JMenuItem("Open");
+        iOpen.addActionListener(this);
+        iOpen.setActionCommand("Open");
         this.menuFile.add(iOpen);
 
         this.iSave = new JMenuItem("Save");
@@ -65,5 +72,20 @@ public class GUI {
     void addLoadListener(ActionListener listenForLoadListener){
         this.iOpen.addActionListener(listenForLoadListener);
     }
+    void addSaveListener(ActionListener listenForLoadListener){
+        this.iSave.addActionListener(listenForLoadListener);
+    }
+    void addDatabaseListener(ActionListener listenForLoadListener){
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        String command = e.getActionCommand();
+        switch (command){
+            case "New": file.newFile(); break;
+            case "Open": file.openFile(); break;
+        }
+    }
 }
