@@ -1,8 +1,10 @@
+/**
+ * skapar creator och body här.
+ */
 public class Loggbok {
 
     private String Creator;
     private String body;
-    private String time;
 
     public String getCreator() {
         return Creator;
