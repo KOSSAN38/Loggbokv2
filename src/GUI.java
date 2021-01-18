@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GUI implements ActionListener{
+public class GUI{
 
     private JTextField author;
     private JPanel panel;
@@ -56,13 +56,9 @@ public class GUI implements ActionListener{
     public void createFileMenu() {
 
         this.iNew = new JMenuItem("New");
-        iNew.addActionListener(this);
-        iNew.setActionCommand("New");
         this.menuFile.add(iNew);
 
         this.iOpen = new JMenuItem("Open");
-        iOpen.addActionListener(this);
-        iOpen.setActionCommand("Open");
         this.menuFile.add(iOpen);
 
         this.iSave = new JMenuItem("Save");
@@ -79,13 +75,11 @@ public class GUI implements ActionListener{
 
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-        String command = e.getActionCommand();
-        switch (command){
-            case "New": file.newFile(); break;
-            case "Open": file.openFile(); break;
-        }
+    public Loggbok getCurrentLogg(){
+        return new Loggbok(author.getText(), textArea.getText());
+    }
+    public void setLogg(Loggbok logg){
+        this.textArea.setText(logg.getBody());
+        this.author.setText(logg.getCreator());
     }
 }
