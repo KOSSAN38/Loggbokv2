@@ -31,6 +31,10 @@ public class GUI{
         createFileMenu();
         this.window.setVisible(true);
     }
+
+    /**
+     * Fösntret där allt visas.
+     */
     public void createWindow() {
         this.window = new JFrame("Loggbok");
         this.window.setSize(1000, 800);
